@@ -26,7 +26,7 @@ class WorkoutCreateModal extends React.Component {
 
   handleOk = async e => {
     const workout = this.state
-    await fetch('/workouts', {
+    await fetch('/api/v2/workouts', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

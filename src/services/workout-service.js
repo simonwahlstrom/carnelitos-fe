@@ -7,7 +7,7 @@ const headers = {
 
 export async function GetWorkouts() {
   try {
-    const response = await fetch('/', {
+    const response = await fetch('/api/v2/', {
       headers,
     })
     return await response.json()

@@ -7,7 +7,7 @@ export async function SaveSession(session, sync = false) {
   }
 
   try {
-    const response = await fetch('/sessions?sync=' + sync, {
+    const response = await fetch('/api/v2/sessions?sync=' + sync, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -24,7 +24,7 @@ export async function SaveSession(session, sync = false) {
 
 export async function DeleteSession(session) {
   RemoveOffline(session.id)
-  const response = await fetch('/sessions/' + session.id, {
+  const response = await fetch('/api/v2/sessions/' + session.id, {
     method: 'DELETE',
   })
 

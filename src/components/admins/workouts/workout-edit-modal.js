@@ -27,7 +27,7 @@ class WorkoutEditModal extends React.Component {
 
   handleOk = async e => {
     const workout = this.state
-    await fetch('/workouts/' + workout.id, {
+    await fetch('/api/v2/workouts/' + workout.id, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -43,7 +43,7 @@ class WorkoutEditModal extends React.Component {
   }
 
   deleteWorkout = async () => {
-    await fetch('/workouts/' + this.props.workout.id, {
+    await fetch('/api/v2/workouts/' + this.props.workout.id, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',

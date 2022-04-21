@@ -7,7 +7,7 @@ const headers = {
 
 export async function AddToSchedule(body) {
   try {
-    const response = await fetch('/schedules', {
+    const response = await fetch('/api/v2/schedules', {
       method: 'POST',
       headers,
       body: JSON.stringify(body)
@@ -21,7 +21,7 @@ export async function AddToSchedule(body) {
 
 export async function MoveToDay(body) {
   try {
-    const response = await fetch('/schedules/' + body.id, {
+    const response = await fetch('/api/v2/schedules/' + body.id, {
       method: 'PATCH',
       headers,
       body: JSON.stringify(body)
@@ -34,7 +34,7 @@ export async function MoveToDay(body) {
 
 export async function RemoveFromFlexibleSchedule(body) {
   try {
-    const response = await fetch('/schedules/' + body.id, {
+    const response = await fetch('/api/v2/schedules/' + body.id, {
       method: 'DELETE',
       headers,
       body: JSON.stringify(body)
@@ -47,7 +47,7 @@ export async function RemoveFromFlexibleSchedule(body) {
 
 export async function RemoveFromFixedSchedule(body) {
   try {
-    const response = await fetch('/schedules/' + body.id, {
+    const response = await fetch('/api/v2/schedules/' + body.id, {
       method: 'DELETE',
       headers,
       body: JSON.stringify(body)
@@ -60,7 +60,7 @@ export async function RemoveFromFixedSchedule(body) {
 
 export async function ChangeOrderOfFlexibleSchedule(body) {
   try {
-    const response = await fetch('/schedules/1', {
+    const response = await fetch('/api/v2/schedules/1', {
       method: 'PATCH',
       headers,
       body: JSON.stringify(body)
@@ -73,7 +73,7 @@ export async function ChangeOrderOfFlexibleSchedule(body) {
 
 export async function SetScheduleType(body) {
   try {
-    const response = await fetch('/schedules/1', {
+    const response = await fetch('/api/v2/schedules/1', {
       method: 'PATCH',
       headers,
       body: JSON.stringify(body)
