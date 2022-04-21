@@ -7,7 +7,7 @@ const headers = {
 
 export async function GetWorkouts() {
   try {
-    const response = await fetch('/api/v2/', {
+    const response = await fetch('http://localhost:3000/api/v2/home', {
       headers,
     })
     return await response.json()
@@ -18,12 +18,17 @@ export async function GetWorkouts() {
 
 export function StoreLocally(data) {
   try {
-    localStorage.setItem("workoutData", JSON.stringify(data))
+    if (data) {
+      localStorage.setItem("workoutData", JSON.stringify(data))
+    }
   } catch (err) {
     console.log(err)
   }
 }
 
 export function GetLocally() {
-  return JSON.parse(localStorage.getItem('workoutData'))
+  const data = localStorage.getItem('workoutData')
+  if (data) {
+    return JSON.parse(data)
+  }
 }

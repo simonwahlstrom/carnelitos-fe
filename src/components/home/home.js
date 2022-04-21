@@ -7,16 +7,24 @@ import { GetWorkouts, StoreLocally, GetLocally } from '../../services/workout-se
 export function Home(props) {
   Sync()
 
+  const [loading, setLoading] = useState(true)
+  const [workouts, setWorkouts] = useState([])
+  const [activeWorkout, setActiveWorkout] = useState(false)
+
   const fetchData = async () => {
     const data = await GetWorkouts()
-    updateData(data)
+    if (data) {
+      updateData(data)
+      StoreLocally(data)
+    }
     setLoading(false)
-    StoreLocally(data)
   }
 
   function updateData(data) {
-    setWorkouts(data.workouts)
-    setActiveWorkout(data.active_workout)
+    if (data) {
+      setWorkouts(data.workouts)
+      setActiveWorkout(data.active_workout)
+    }
     setLoading(false)
   }
 
@@ -27,10 +35,6 @@ export function Home(props) {
     }
     fetchData()
   }, [])
-
-  const [loading, setLoading] = useState(true)
-  const [workouts, setWorkouts] = useState([])
-  const [activeWorkout, setActiveWorkout] = useState(false)
 
   if (loading) {
     return <Spin size="large" style={spinnerStyling} />

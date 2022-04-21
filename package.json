@@ -18,6 +18,8 @@
     "react-tabs": "^5.1.0",
     "react-youtube": "^8.2.1",
     "recharts": "^2.1.9",
+    "sass": "^1.50.1",
+    "styled-components": "^5.3.5",
     "uuid": "^8.3.2",
     "youtube-api-search": "^0.0.5"
   },

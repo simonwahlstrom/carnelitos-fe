@@ -17,7 +17,7 @@ export default function Stats(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await fetch(`/api/v1/stats?history=true`)
+      const result = await fetch(`http://localhost:3000/api/v1/stats?history=true`)
       let data = await result.json()
       setHistory(data)
       setLoadingHistory(false)
@@ -27,7 +27,7 @@ export default function Stats(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await fetch(`/api/v1/stats?overview=true`)
+      const result = await fetch(`http://localhost:3000/api/v1/stats?overview=true`)
       let data = await result.json()
       setOverview(data)
     }
@@ -41,7 +41,7 @@ export default function Stats(props) {
   }
 
   function fetchExercises(query) {
-    fetch(`/api/v1/stats?q=${query}&exact=true`)
+    fetch(`http://localhost:3000/api/v1/stats?q=${query}&exact=true`)
       .then(response => response.json())
       .then(data => {
         setLoading(false)

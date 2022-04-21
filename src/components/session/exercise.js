@@ -32,7 +32,7 @@ export function Exercise(props) {
     setLoading(false)
 
     try {
-      const response = await fetch('/api/v2/sessions', {
+      const response = await fetch('http://localhost:3000/api/v2/sessions', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

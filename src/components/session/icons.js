@@ -12,7 +12,7 @@ export function Session(props) {
 
   async function getHistory(name) {
     setLoading(true)
-    const response = await fetch(`/api/v1/stats?q=${name}&exact=true`)
+    const response = await fetch(`http://localhost:3000/api/v1/stats?q=${name}&exact=true`)
     if (response.ok) {
       const data = await response.json()
       setExercises(data.exercises)
