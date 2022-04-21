@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { StoreToken } from "../src/services/workout-service"
+import { StoreToken } from "../src/services/login-service"
 
 export default function login() {
   const [username, setUsername] = useState(undefined)

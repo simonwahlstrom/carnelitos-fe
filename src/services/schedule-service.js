@@ -1,8 +1,10 @@
 import { Notification } from "../components/notifications/notification"
+import { GetToken } from "./login-service"
 
 const headers = {
   'Accept': 'application/json',
   'Content-Type': 'application/json',
+  'Authorization': `Bearer ${GetToken()}`
 }
 
 export async function AddToSchedule(body) {

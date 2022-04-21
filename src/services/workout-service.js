@@ -1,8 +1,10 @@
 import { Notification } from "../components/notifications/notification"
+import { GetToken } from "./login-service"
 
 const headers = {
   'Accept': 'application/json',
   'Content-Type': 'application/json',
+  'Authorization': `Bearer ${GetToken()}`
 }
 
 export async function GetWorkouts() {
@@ -13,35 +15,6 @@ export async function GetWorkouts() {
     return await response.json()
   } catch (err) {
     Notification("Oh no!", "Seems like you don't have any internet connection", 1.5)
-  }
-}
-
-export function DeleteToken() {
-  try {
-    if (token) {
-      localStorage.removeItem("token")
-    }
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-export function StoreToken(token) {
-  try {
-    if (token) {
-      localStorage.setItem("token", token)
-    }
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-export function GetToken() {
-  try {
-    const data = localStorage.getItem('token')
-    return data
-  } catch (err) {
-    console.log(err)
   }
 }
 

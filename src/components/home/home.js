@@ -1,56 +1,56 @@
-import React, { useState, useEffect } from "react";
-import Schedule from "./schedule/schedule";
-import { Sync } from "../../services/sync-manager";
-import { Button, Spin } from "antd";
+import React, { useState, useEffect } from "react"
+import Schedule from "./schedule/schedule"
+import { Sync } from "../../services/sync-manager"
+import { Button, Spin } from "antd"
 import {
   GetWorkouts,
   StoreLocally,
   GetLocally,
   DeleteToken,
-} from "../../services/workout-service";
+} from "../../services/workout-service"
 
 export function Home(props) {
-  const [loading, setLoading] = useState(true);
-  const [workouts, setWorkouts] = useState([]);
-  const [activeWorkout, setActiveWorkout] = useState(false);
+  const [loading, setLoading] = useState(true)
+  const [workouts, setWorkouts] = useState([])
+  const [activeWorkout, setActiveWorkout] = useState(false)
 
   const fetchData = async () => {
-    const data = await GetWorkouts();
+    const data = await GetWorkouts()
 
     if (data && !data.valid) {
-      DeleteToken();
-      window.location = "/login";
+      DeleteToken()
+      window.location = "/login"
     }
 
     if (data) {
-      updateData(data);
-      StoreLocally(data);
+      updateData(data)
+      StoreLocally(data)
     }
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   function updateData(data) {
     if (data) {
-      setWorkouts(data.workouts);
-      setActiveWorkout(data.active_workout);
+      setWorkouts(data.workouts)
+      setActiveWorkout(data.active_workout)
     }
-    setLoading(false);
+    setLoading(false)
   }
 
   useEffect(() => {
-    Sync();
-    const localData = GetLocally();
+    Sync()
+    const localData = GetLocally()
     if (localData) {
-      updateData(localData);
+      updateData(localData)
     }
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   if (loading) {
-    return <Spin size="large" style={spinnerStyling} />;
+    return <Spin size="large" style={spinnerStyling} />
   }
   if (Object.entries(workouts).length > 0) {
-    const schedule = Array.isArray(workouts) ? "flex" : "fixed";
+    const schedule = Array.isArray(workouts) ? "flex" : "fixed"
     return (
       <div>
         <Schedule
@@ -59,7 +59,7 @@ export function Home(props) {
           workouts={workouts}
         />
       </div>
-    );
+    )
   }
 
   return (
@@ -76,7 +76,7 @@ export function Home(props) {
         </Button>
       </p>
     </div>
-  );
+  )
 }
 
 const spinnerStyling = {
@@ -86,6 +86,6 @@ const spinnerStyling = {
   alignItems: "center",
   textAlign: "center",
   minHeight: "100vh",
-};
+}
 
-export default Home;
+export default Home
