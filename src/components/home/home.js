@@ -5,8 +5,6 @@ import { Button, Spin} from "antd"
 import { GetWorkouts, StoreLocally, GetLocally } from '../../services/workout-service'
 
 export function Home(props) {
-  Sync()
-
   const [loading, setLoading] = useState(true)
   const [workouts, setWorkouts] = useState([])
   const [activeWorkout, setActiveWorkout] = useState(false)
@@ -29,6 +27,7 @@ export function Home(props) {
   }
 
   useEffect(() => {
+    Sync()
     const localData = GetLocally()
     if (localData) {
       updateData(localData)
