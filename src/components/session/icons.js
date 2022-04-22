@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { Button, Icon, Modal } from 'antd'
+import { Button, Modal } from 'antd'
+import { InfoCircleOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import ExerciseTabs from "../stats/exercise-tabs"
 import YTSearch from "youtube-api-search"
@@ -42,18 +43,16 @@ export function Session(props) {
       >
         <ExerciseTabs loading={loading} exercises={exercises} video={video} />
       </Modal>
-      <IconStyling>
-        <Icon
-          type="info-circle"
-          style={{ marginRight: "10px" }}
-          onClick={event => {
-            getHistory(props.name)
-            videoSearch(props.name)
-            setInfoPopupVisible(true)
-            event.stopPropagation()
-          }}
-        />
-      </IconStyling>
+      <InfoCircleOutlined
+        style={{ marginRight: "10px" }}
+        onClick={event => {
+          getHistory(props.name)
+          videoSearch(props.name)
+          setInfoPopupVisible(true)
+          event.stopPropagation()
+        }}
+      />
+
     </div>
   )
 }
