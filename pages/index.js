@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Home from "../src/components/home/home"
 import { Spin } from "antd"
-import { CheckToken } from "../src/services/login-service"
+import { CheckToken, DeleteToken } from "../src/services/login-service"
 
 export default function Index() {
   const [loading, setLoading] = useState(true)
@@ -35,6 +35,7 @@ export default function Index() {
   }
 
   if (!loading && valid == false) {
+    DeleteToken()
     window.location = "/login"
   }
 }

@@ -7,7 +7,6 @@ import {
   StoreLocally,
   GetLocally,
 } from "../../services/workout-service"
-import { DeleteToken } from "../../services/login-service"
 
 export function Home(props) {
   const [loading, setLoading] = useState(true)
@@ -16,17 +15,9 @@ export function Home(props) {
 
   const fetchData = async () => {
     const data = await GetWorkouts()
-
-    if (data && !data.valid) {
-      DeleteToken()
-      return window.location = "/login"
-    }
-
-    if (data && data.valid) {
-      updateData(data)
-      StoreLocally(data)
-      setLoading(false)
-    }
+    updateData(data)
+    StoreLocally(data)
+    setLoading(false)
   }
 
   function updateData(data) {
@@ -43,7 +34,7 @@ export function Home(props) {
       updateData(localData)
     }
     fetchData()
-    // setLoading(false)
+    setLoading(false)
   }, [])
 
   if (loading) {
