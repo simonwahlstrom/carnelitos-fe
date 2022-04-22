@@ -6,7 +6,7 @@ export default function Index() {
 
   useEffect(() => {
     setLoading(false)
-  })
+  }, [])
 
   if (loading) {
     return (

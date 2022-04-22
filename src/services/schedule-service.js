@@ -1,13 +1,13 @@
 import { Notification } from "../components/notifications/notification"
 import { GetToken } from "./login-service"
 
-const headers = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json',
-  'Authorization': `Bearer ${GetToken()}`
-}
-
 export async function AddToSchedule(body) {
+    const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${GetToken()}`
+  }
+
   try {
     const response = await fetch('http://localhost:3000/api/v2/schedules', {
       method: 'POST',
@@ -22,6 +22,12 @@ export async function AddToSchedule(body) {
 }
 
 export async function MoveToDay(body) {
+    const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${GetToken()}`
+  }
+
   try {
     const response = await fetch('http://localhost:3000/api/v2/schedules/' + body.id, {
       method: 'PATCH',
@@ -35,6 +41,12 @@ export async function MoveToDay(body) {
 }
 
 export async function RemoveFromFlexibleSchedule(body) {
+    const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${GetToken()}`
+  }
+
   try {
     const response = await fetch('http://localhost:3000/api/v2/schedules/' + body.id, {
       method: 'DELETE',
@@ -48,6 +60,12 @@ export async function RemoveFromFlexibleSchedule(body) {
 }
 
 export async function RemoveFromFixedSchedule(body) {
+    const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${GetToken()}`
+  }
+
   try {
     const response = await fetch('http://localhost:3000/api/v2/schedules/' + body.id, {
       method: 'DELETE',
@@ -61,6 +79,12 @@ export async function RemoveFromFixedSchedule(body) {
 }
 
 export async function ChangeOrderOfFlexibleSchedule(body) {
+    const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${GetToken()}`
+  }
+
   try {
     const response = await fetch('http://localhost:3000/api/v2/schedules/1', {
       method: 'PATCH',
@@ -74,6 +98,12 @@ export async function ChangeOrderOfFlexibleSchedule(body) {
 }
 
 export async function SetScheduleType(body) {
+    const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${GetToken()}`
+  }
+
   try {
     const response = await fetch('http://localhost:3000/api/v2/schedules/1', {
       method: 'PATCH',

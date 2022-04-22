@@ -1,13 +1,13 @@
 import { Notification } from "../components/notifications/notification"
 import { GetToken } from "./login-service"
 
-const headers = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json',
-  'Authorization': `Bearer ${GetToken()}`
-}
-
 export async function GetWorkouts() {
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${GetToken()}`
+  }
+
   try {
     const response = await fetch('http://localhost:3000/api/v2/home', {
       headers,
