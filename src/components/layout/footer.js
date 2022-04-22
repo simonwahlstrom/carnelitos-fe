@@ -4,25 +4,15 @@ import styled from 'styled-components'
 
 export function Footer(props) {
   const path = window.location.pathname
-  let footer
-  if (props.logged_in) {
-    footer =
-    <div className='footer'>
-      <FooterButton name="home" active={true} url="/" highlighted={path === "/"} />
-      <FooterButton name="play-circle" active={props.active_workout} url="/sessions/new" highlighted={path === "/sessions/new"} />
-      <FooterButton name="line-chart" active={true} url="/stats" highlighted={path === "/stats"} />
-      <FooterButton name="schedule" active={true} url="/settings" highlighted={path === "/settings"} />
-    </div>
-  } else {
-    footer =
-      <div className='footer'>
-        <FooterButton name="home" active={true} url="/" highlighted={path === "/"} />
-        <FooterButton name="user" active={true} url="/users/sign_in" highlighted={path === "/users/sign_in"} />
-      </div>
-  }
+
   return (
     <FooterStyling>
-      {footer}
+      <div className='footer'>
+        <FooterButton name="home" active={true} url="/" highlighted={path === "/"} />
+        <FooterButton name="play-circle" active={props.active_workout} url="/sessions/new" highlighted={path === "/sessions/new"} />
+        <FooterButton name="line-chart" active={true} url="/stats" highlighted={path === "/stats"} />
+        <FooterButton name="schedule" active={true} url="/settings" highlighted={path === "/settings"} />
+      </div>
     </FooterStyling>
   )
 }

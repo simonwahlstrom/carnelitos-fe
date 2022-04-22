@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import Home from "../src/components/home/home"
 import { Spin } from "antd"
 import { CheckToken, DeleteToken } from "../src/services/login-service"
+import Footer from "../src/components/layout/footer"
 
 export default function Index() {
   const [loading, setLoading] = useState(true)
@@ -25,7 +26,10 @@ export default function Index() {
 
   if (!loading && valid) {
     return (
-      <Home />
+      <>
+        <Home />
+        {/* <Footer logged_in={true} /> */}
+      </>
     )
   }
 
