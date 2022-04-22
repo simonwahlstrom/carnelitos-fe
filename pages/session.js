@@ -1,7 +1,10 @@
 import Session from "../src/components/session/session"
+import Layout from "../src/components/shared/layout"
 
 export default function session() {
   return (
-    <Session />
+    <Layout>
+      <Session />
+    </Layout>
   )
 }
