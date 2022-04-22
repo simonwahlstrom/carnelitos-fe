@@ -1,8 +1,6 @@
 export function DeleteToken() {
   try {
-    if (token) {
-      localStorage.removeItem("token")
-    }
+    localStorage.removeItem("token")
   } catch (err) {
     console.log(err)
   }

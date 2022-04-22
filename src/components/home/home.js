@@ -6,8 +6,8 @@ import {
   GetWorkouts,
   StoreLocally,
   GetLocally,
-  DeleteToken,
 } from "../../services/workout-service"
+import { DeleteToken } from "../../services/login-service"
 
 export function Home(props) {
   const [loading, setLoading] = useState(true)
@@ -19,14 +19,14 @@ export function Home(props) {
 
     if (data && !data.valid) {
       DeleteToken()
-      window.location = "/login"
+      return window.location = "/login"
     }
 
-    if (data) {
+    if (data && data.valid) {
       updateData(data)
       StoreLocally(data)
+      setLoading(false)
     }
-    setLoading(false)
   }
 
   function updateData(data) {
@@ -34,7 +34,6 @@ export function Home(props) {
       setWorkouts(data.workouts)
       setActiveWorkout(data.active_workout)
     }
-    setLoading(false)
   }
 
   useEffect(() => {
@@ -44,11 +43,13 @@ export function Home(props) {
       updateData(localData)
     }
     fetchData()
+    // setLoading(false)
   }, [])
 
   if (loading) {
     return <Spin size="large" style={spinnerStyling} />
   }
+
   if (Object.entries(workouts).length > 0) {
     const schedule = Array.isArray(workouts) ? "flex" : "fixed"
     return (
