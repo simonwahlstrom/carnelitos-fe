@@ -1,30 +1,38 @@
-.react-tabs__tab-list {
-  border: 0;
-  display: flex;
-  margin-bottom: 0;
-}
-
-.react-tabs__tab {
-  bottom: 0;
-  flex: auto;
-  color: #808080;
-  background-color: #262629;
-  border-radius: none;
-  line-height: 4.5rem;
-  text-align: center;
-  padding: 0;
-  height: 5rem;
-  border-color: #262629;
-
-  &.react-tabs__tab--selected {
-    color: #fff;
-    background-color: #262629;
-    border-radius: 0;
-    border-color: #262629;
+.react-tabs {
+  ul {
+    border-bottom: 1px solid #aaa;
+    margin: 0 0 10px;
+    padding: 0;
+    list-style: none;
+  }
+  .react-tabs__tab-list {
+    border: 0;
+    display: flex;
+    margin-bottom: 0;
   }
 
-  &.react-tabs__tab--disabled {
+  .react-tabs__tab {
+    bottom: 0;
+    flex: auto;
     color: #808080;
-    background-color:#595959;
+    background-color: #262629;
+    border-radius: none;
+    line-height: 4.5rem;
+    text-align: center;
+    padding: 0;
+    height: 5rem;
+    border-color: #262629;
+
+    &.react-tabs__tab--selected {
+      color: #fff;
+      background-color: #262629;
+      border-radius: 0;
+      border-color: #262629;
+    }
+
+    &.react-tabs__tab--disabled {
+      color: #808080;
+      background-color:#595959;
+    }
   }
 }
