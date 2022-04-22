@@ -9,18 +9,13 @@ export default function Index() {
 
   useEffect(() => {
     fetchData()
-  }, [])
-
-  useEffect(() => {
     setLoading(false)
-  }, [valid])
+  }, [])
 
   const fetchData = async () => {
     const data = await CheckToken()
     setValid(data.valid)
   }
-
-  console.log({valid, loading})
 
   if (loading) {
     return (
