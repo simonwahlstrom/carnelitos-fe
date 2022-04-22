@@ -45,6 +45,7 @@ const FooterStyling = styled.div`
       &:disabled {
         color: #808080;
         background-color: #000000;
+        opacity: 0.65;
       }
     }
   }
