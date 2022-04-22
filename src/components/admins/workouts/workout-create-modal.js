@@ -1,5 +1,6 @@
 import React from "react"
 import { Modal, Form, Input, Switch } from 'antd'
+import { GetToken } from "../../../../services/login-service"
 
 class WorkoutCreateModal extends React.Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class WorkoutCreateModal extends React.Component {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${GetToken()}`
       },
       body: JSON.stringify(workout)
     })
