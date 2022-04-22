@@ -4,6 +4,7 @@ import { Overview } from "./overview"
 import { AutoComplete } from "antd"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import ExerciseTabs from "./exercise-tabs"
+import { GetToken } from "../../services/login-service"
 
 export default function Stats(props) {
   const [exercises, setExercises] = useState(undefined)
@@ -17,7 +18,14 @@ export default function Stats(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await fetch(`http://localhost:3000/api/v1/stats?history=true`)
+      const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${GetToken()}`
+      }
+      const result = await fetch(`http://localhost:3000/api/v1/stats?history=true`, {
+        headers: headers,
+      })
       let data = await result.json()
       setHistory(data)
       setLoadingHistory(false)
@@ -27,7 +35,14 @@ export default function Stats(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await fetch(`http://localhost:3000/api/v1/stats?overview=true`)
+      const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${GetToken()}`
+      }
+      const result = await fetch(`http://localhost:3000/api/v1/stats?overview=true`, {
+        headers: headers,
+      })
       let data = await result.json()
       setOverview(data)
     }
@@ -41,7 +56,14 @@ export default function Stats(props) {
   }
 
   function fetchExercises(query) {
-    fetch(`http://localhost:3000/api/v1/stats?q=${query}&exact=true`)
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${GetToken()}`
+    }
+    fetch(`http://localhost:3000/api/v1/stats?q=${query}&exact=true`, {
+      headers: headers,
+    })
       .then(response => response.json())
       .then(data => {
         setLoading(false)

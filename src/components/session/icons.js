@@ -4,6 +4,7 @@ import { InfoCircleOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import ExerciseTabs from "../stats/exercise-tabs"
 import YTSearch from "youtube-api-search"
+import { GetToken } from "../../services/login-service"
 
 export function Session(props) {
   const [exercises, setExercises] = useState(undefined)
@@ -12,8 +13,16 @@ export function Session(props) {
   const [loading, setLoading] = useState(false)
 
   async function getHistory(name) {
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${GetToken()}`
+    }
+
     setLoading(true)
-    const response = await fetch(`http://localhost:3000/api/v1/stats?q=${name}&exact=true`)
+    const response = await fetch(`http://localhost:3000/api/v1/stats?q=${name}&exact=true`, {
+      headers: headers,
+    })
     if (response.ok) {
       const data = await response.json()
       setExercises(data.exercises)
