@@ -3,6 +3,7 @@ import { Table, Button, Tag } from 'antd'
 import Exercises from "./exercises"
 import WorkoutEditModal from "./workout-edit-modal"
 import WorkoutCreateModal from "./workout-create-modal"
+import { CopyOutlined } from "@ant-design/icons"
 
 class Workouts extends React.Component {
   constructor(props) {
@@ -95,7 +96,7 @@ class Workouts extends React.Component {
         dataIndex: '',
         key: 'x',
         render: (record) => <div style={{ "display": "flex" }}>
-          <Button type="default" icon="copy" onClick={(e) => { { e.stopPropagation(), window.open(`/workouts/${record.id}`, "_blank") } }} />
+          <Button type="default" icon={<CopyOutlined />} onClick={(e) => { { e.stopPropagation(), window.open(`/workouts/${record.id}`, "_blank") } }} />
         </div>,
       },
     ]

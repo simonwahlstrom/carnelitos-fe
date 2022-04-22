@@ -1,5 +1,6 @@
 import React from "react"
-import { Menu, Dropdown, Icon } from 'antd';
+import { Menu, Dropdown} from 'antd';
+import { DownOutlined } from "@ant-design/icons"
 export function DaySelector(props) {
 
   const menu = (
@@ -45,7 +46,7 @@ export function DaySelector(props) {
   return (
     <Dropdown overlay={menu}>
       <a className="ant-dropdown-link" href="#">
-        {props.day} <Icon type="down" />
+        {props.day} <DownOutlined />
       </a>
     </Dropdown>
   )

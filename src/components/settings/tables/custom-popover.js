@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Button, Popover } from 'antd'
+import { PlusOutlined } from "@ant-design/icons"
 
 export function CustomPopover(props) {
   const [visible, setVisible] = useState(false)
@@ -35,7 +36,7 @@ export function CustomPopover(props) {
     setVisible(false)
   }
 
-  return <Popover placement="left" content={popOverContent(props.id)} visible={visible}><Button icon="plus" onClick={(e) => setVisible(!visible)} /></Popover>
+  return <Popover placement="left" content={popOverContent(props.id)} visible={visible}><Button icon={<PlusOutlined />} onClick={(e) => setVisible(!visible)} /></Popover>
 }
 
 export default CustomPopover

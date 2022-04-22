@@ -2,9 +2,9 @@ import React from "react"
 import { Button, Table, Tag } from 'antd'
 import { RemoveFromFixedSchedule, MoveToDay } from "../../../services/schedule-service"
 import DaySelector from "./day-selector"
+import { DeleteOutlined } from "@ant-design/icons"
 
 export function SelectedFixedWorkoutTable(props) {
-  const days = Object.keys(props.workouts)
   const workouts = Object.values(props.workouts).flat()
 
   const columns = [
@@ -32,7 +32,7 @@ export function SelectedFixedWorkoutTable(props) {
       dataIndex: '',
       key: 'x',
       render: (record) => <React.Fragment>
-        <Button type="danger" icon="delete" onClick={(e) => { {e.stopPropagation(), removeFromSchedule(record.day, record.id) }}}/>
+        <Button type="danger" icon={<DeleteOutlined />} onClick={(e) => { {e.stopPropagation(), removeFromSchedule(record.day, record.id) }}}/>
       </React.Fragment>,
     },
   ]

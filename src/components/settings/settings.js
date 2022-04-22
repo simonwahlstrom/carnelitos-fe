@@ -1,25 +1,47 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
-import { Radio, Switch } from "antd"
+import { Radio, Spin, Switch } from "antd"
 import SelectedFlexWorkoutTable from "./tables/selectedFlexWorkouts"
 import FlexWorkoutTable from "./tables/flexWorkouts"
 import SelectedFixedWorkoutTable from "./tables/selectedFixedWorkouts"
 import FixedWorkoutTable from "./tables/fixedWorkouts"
 import { SetScheduleType } from "../../services/schedule-service"
 import Workouts from "../workouts/builder/workouts/workouts"
+import { GetSettings } from '../../services/settings-service'
 
 export default function Settings(props) {
-  const [selectedWorkouts, setSelectedWorkouts] = useState(props.selectedWorkouts)
+  const [loading, setLoading] = useState(true)
   const [viewPublicWorkouts, setViewPublicWorkouts] = useState(false)
-  const [scheduleType] = useState(props.scheduleType)
-  const [workouts] = useState(props.workouts)
+  const [selectedWorkouts, setSelectedWorkouts] = useState([])
+  const [workouts, setWorkouts] = useState([])
+  const [exercises, setExercises] = useState([])
+  const [userId, setUserId] = useState(undefined)
+  const [scheduleType, setScheduleType] = useState("flex")
   const SelectedWorkoutTable = scheduleType == "flex" ? SelectedFlexWorkoutTable : SelectedFixedWorkoutTable
   const WorkoutTable = scheduleType == "flex" ? FlexWorkoutTable : FixedWorkoutTable
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    const data = await GetSettings()
+    setWorkouts(data.workouts)
+    setSelectedWorkouts(data.selected_workouts)
+    setScheduleType(data.schedule_type)
+    setExercises(data.exercises)
+    setUserId(data.user)
+    setLoading(false)
+  }
 
   async function changeScheduleType(e) {
     const value = e.target.value
     await SetScheduleType({ change: true, type: value })
     location.reload()
+  }
+
+  if (loading) {
+    return <Spin size="large" style={spinnerStyling} />
   }
 
   return (
@@ -35,7 +57,7 @@ export default function Settings(props) {
           <div className="container">
             <Radio.Group
               onChange={changeScheduleType}
-              defaultValue={props.scheduleType}
+              defaultValue={scheduleType}
               buttonStyle="solid"
               size="large"
               style={{width: "100%", textAlign: "center", marginBottom: "30px"}}>
@@ -60,16 +82,25 @@ export default function Settings(props) {
               setSelectedWorkouts={setSelectedWorkouts}
               workouts={workouts}
               viewPublicWorkouts={viewPublicWorkouts}
-              user={props.user}
+              user={userId}
             />
           </div>
         </TabPanel>
         <TabPanel key="3">
           <div className="container">
-            <Workouts workouts={props.workouts.filter(item => item.owner == props.user)} all_exercises={props.exercises} />
+            <Workouts workouts={workouts.filter(item => item.owner == userId)} all_exercises={exercises} />
           </div>
         </TabPanel>
       </Tabs>
     </div>
   )
+}
+
+const spinnerStyling = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  textAlign: "center",
+  minHeight: "100vh",
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Button, Table, Tag } from 'antd'
 import { AddToSchedule } from "../../../services/schedule-service"
-
+import { PlusOutlined, CopyOutlined } from "@ant-design/icons"
 export function FlexWorkoutTable(props) {
   let workouts = props.workouts.filter(item => !props.selectedWorkouts.map((w) => w.id).includes(item.id))
 
@@ -33,8 +33,8 @@ export function FlexWorkoutTable(props) {
       dataIndex: '',
       key: 'x',
       render: (record) => <div style={{"display" : "flex"}}>
-        <Button icon="plus" onClick={(e) => { e.stopPropagation(), addToSchedule(record.id) }} />
-        <Button type="default" icon="copy" onClick={(e) => { { e.stopPropagation(), window.open(`/workouts/${record.id}`, "_blank") } }} />
+        <Button icon={<PlusOutlined />} onClick={(e) => { e.stopPropagation(), addToSchedule(record.id) }} />
+        <Button type="default" icon={<CopyOutlined />} onClick={(e) => { { e.stopPropagation(), window.open(`/workouts/${record.id}`, "_blank") } }} />
         </div>,
     },
   ]

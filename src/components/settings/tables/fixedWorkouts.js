@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Button, Table, Popover, Tag } from 'antd'
 import { AddToSchedule } from "../../../services/schedule-service"
 import CustomPopover from "./custom-popover"
+import { CopyOutlined } from "@ant-design/icons"
 
 export function FixedWorkoutTable(props) {
   let workouts = props.workouts.filter(item => !Object.values(props.selectedWorkouts).flat().map((w) => w.id).includes(item.id))
@@ -35,7 +36,7 @@ export function FixedWorkoutTable(props) {
       key: 'x',
       render: (record) => <div style={{ "display": "flex" }}>
           <CustomPopover id={record.id} addToSchedule={addToSchedule} />
-          <Button type="default" icon="copy" onClick={(e) => { { e.stopPropagation(), window.open(`/workouts/${record.id}`, "_blank") } }} />
+          <Button type="default" icon={<CopyOutlined />} onClick={(e) => { { e.stopPropagation(), window.open(`/workouts/${record.id}`, "_blank") } }} />
         </div>,
     },
   ]

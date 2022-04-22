@@ -1,7 +1,8 @@
 import React from "react"
-import { Table, Input, Button, Icon } from 'antd';
+import { Table, Input, Button } from 'antd';
 import Highlighter from 'react-highlight-words';
 import ExerciseEditModal from "./edit-modal"
+import { SearchOutlined } from "@ant-design/icons"
 
 class Exercises extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class Exercises extends React.Component {
         <Button
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon="search"
+          icon={<SearchOutlined />}
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
@@ -43,7 +44,7 @@ class Exercises extends React.Component {
       </div>
     ),
     filterIcon: filtered => (
-      <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+      <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]

@@ -1,6 +1,8 @@
 import React from "react"
 import { Button, Table, Tag } from 'antd'
 import { RemoveFromFlexibleSchedule, ChangeOrderOfFlexibleSchedule } from "../../../services/schedule-service"
+import { DeleteOutlined } from "@ant-design/icons"
+import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons"
 
 export function SelectedFlexWorkoutTable(props) {
   const columns = [
@@ -27,9 +29,9 @@ export function SelectedFlexWorkoutTable(props) {
       dataIndex: '',
       key: 'x',
       render: (record) => <div style={{display: "flex", justifyContent: "space-between"}}>
-        <Button disabled={record.key == 0} icon="arrow-up" type="primary" onClick={(e) => { e.stopPropagation(), ChangeOrderOfWorkout(record.key, -1) }}/>
-        <Button disabled={record.key == props.workouts.length - 1} icon="arrow-down" type="primary" onClick={(e) => { e.stopPropagation(), ChangeOrderOfWorkout(record.key, 1) }}/>
-        <Button type="danger" icon="delete" onClick={(e) => { e.stopPropagation(), removeFromSchedule(record.id) }}/>
+        <Button disabled={record.key == 0} icon={<ArrowUpOutlined />} type="primary" onClick={(e) => { e.stopPropagation(), ChangeOrderOfWorkout(record.key, -1) }}/>
+        <Button disabled={record.key == props.workouts.length - 1} icon={<ArrowDownOutlined />} type="primary" onClick={(e) => { e.stopPropagation(), ChangeOrderOfWorkout(record.key, 1) }}/>
+        <Button type="danger" icon={<DeleteOutlined />} onClick={(e) => { e.stopPropagation(), removeFromSchedule(record.id) }}/>
       </div>,
     },
   ]
