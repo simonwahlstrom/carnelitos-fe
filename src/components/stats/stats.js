@@ -4,29 +4,22 @@ import { Overview } from "./overview"
 import { AutoComplete } from "antd"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import ExerciseTabs from "./exercise-tabs"
-import { GetToken } from "../../services/login-service"
+import { GetAllExercises, GetStats } from '../../services/stats-service'
 
-export default function Stats(props) {
+export default function Stats() {
   const [exercises, setExercises] = useState(undefined)
   const [message, setMessage] = useState(undefined)
   const [loading, setLoading] = useState(false)
 
   const [loadingHistory, setLoadingHistory] = useState(true)
   const [history, setHistory] = useState([])
-
   const [overview, setOverview] = useState([])
+  const [allExercises, setAllExercises] = useState([])
+
 
   useEffect(() => {
     async function fetchData() {
-      const headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${GetToken()}`
-      }
-      const result = await fetch(`http://localhost:3000/api/v1/stats?history=true`, {
-        headers: headers,
-      })
-      let data = await result.json()
+      let data = await GetStats("history=true")
       setHistory(data)
       setLoadingHistory(false)
     }
@@ -35,45 +28,35 @@ export default function Stats(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${GetToken()}`
-      }
-      const result = await fetch(`http://localhost:3000/api/v1/stats?overview=true`, {
-        headers: headers,
-      })
-      let data = await result.json()
+      let data = await GetStats("overview=true")
       setOverview(data)
     }
     fetchData()
   }, [])
 
+  useEffect(() => {
+    async function fetchData() {
+      let data = await GetAllExercises()
+      setAllExercises(data.all_exercises)
+    }
+    fetchData()
+  }, [])
+
   function handleInputChange(value) {
-    $(".stats input")[0].blur()
+    // $(".stats input")[0].blur()
     setLoading(true)
     fetchExercises(value)
   }
 
-  function fetchExercises(query) {
-    const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${GetToken()}`
+  async function fetchExercises(query) {
+    const data = await GetStats(`q=${query}&exact=true`)
+    setLoading(false)
+    if(data.message) {
+      setMessage(data.message)
+    } else {
+      setExercises(data.exercises)
+      setMessage(undefined)
     }
-    fetch(`http://localhost:3000/api/v1/stats?q=${query}&exact=true`, {
-      headers: headers,
-    })
-      .then(response => response.json())
-      .then(data => {
-        setLoading(false)
-        if(data.message) {
-          setMessage(data.message)
-        } else {
-          setExercises(data.exercises)
-          setMessage(undefined)
-        }
-      })
   }
 
   return (
@@ -91,7 +74,7 @@ export default function Stats(props) {
               style={{ width: "100%", marginBottom: "10px", marginTop: "10px", fontSize: "16px" }}
               allowClear={true}
               size="large"
-              dataSource={props.all_exercises}
+              dataSource={allExercises}
               placeholder="Search for exercises"
               onSelect={handleInputChange}
               filterOption={(inputValue, option) =>
