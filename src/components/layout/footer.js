@@ -2,16 +2,23 @@ import React from 'react'
 import FooterButton from "./footer-button"
 import styled from 'styled-components'
 
+import {
+  HomeOutlined,
+  PlayCircleOutlined,
+  LineChartOutlined,
+  ScheduleOutlined,
+ } from '@ant-design/icons'
+
 export function Footer(props) {
   const path = window.location.pathname
 
   return (
     <FooterStyling>
       <div className='footer'>
-        <FooterButton name="home" active={true} url="/" highlighted={path === "/"} />
-        <FooterButton name="play-circle" active={props.active_workout} url="/sessions/new" highlighted={path === "/sessions/new"} />
-        <FooterButton name="line-chart" active={true} url="/stats" highlighted={path === "/stats"} />
-        <FooterButton name="schedule" active={true} url="/settings" highlighted={path === "/settings"} />
+        <FooterButton icon={HomeOutlined} active={true} url="/" highlighted={path === "/"} />
+        <FooterButton icon={PlayCircleOutlined} active={props.active_workout} url="/sessions/new" highlighted={path === "/sessions/new"} />
+        <FooterButton icon={LineChartOutlined} active={true} url="/stats" highlighted={path === "/stats"} />
+        <FooterButton icon={ScheduleOutlined} active={true} url="/settings" highlighted={path === "/settings"} />
       </div>
     </FooterStyling>
   )

@@ -9,13 +9,15 @@ export function FooterButton(props) {
     window.location.href = props.url
   }
 
+  const Icon = props.icon
+
   return (
     <Button
       loading={loading}
       className={'btn btn-secondary' + (props.highlighted ? " highlighted" : "")}
       disabled={!props.active}
       onClick={() => handeClick()}>
-      <Icon type={props.name} />
+      <Icon />
     </Button>
   )
 }

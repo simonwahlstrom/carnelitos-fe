@@ -28,7 +28,7 @@ export default function Index() {
     return (
       <>
         <Home />
-        {/* <Footer logged_in={true} /> */}
+        <Footer logged_in={true} />
       </>
     )
   }
