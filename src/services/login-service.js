@@ -1,3 +1,21 @@
+export async function CheckToken() {
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${GetToken()}`
+  }
+
+  try {
+    const response = await fetch('http://localhost:3000/api/v1/login', {
+      headers,
+    })
+    const valid = await response.json()
+    return valid
+  } catch (err) {
+    Notification("Oh no!", "Seems like you don't have any internet connection", 1.5)
+  }
+}
+
 export function DeleteToken() {
   try {
     localStorage.removeItem("token")
