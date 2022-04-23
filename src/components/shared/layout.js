@@ -73,7 +73,8 @@ export default function Layout(props) {
         <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#9ac05a" />
         <meta name="theme-color" content="#ffffff" />
-        {/* <meta name="apple-mobile-web-app-capable" content="yes"></meta> */}
+        <meta name="apple-mobile-web-app-capable" content="yes"></meta>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <title>Carnelitos</title>
       </Head>
       <>
