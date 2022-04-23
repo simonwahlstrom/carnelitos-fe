@@ -15,7 +15,9 @@ export default function Layout(props) {
 
   const fetchData = async () => {
     const data = await CheckToken()
-    setValid(data.valid)
+    if (data) {
+      setValid(data.valid)
+    }
   }
 
   function renderView() {

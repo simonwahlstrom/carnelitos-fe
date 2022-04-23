@@ -1,3 +1,5 @@
+import { Notification } from "../components/notifications/notification"
+
 export async function CheckToken() {
   const headers = {
     'Accept': 'application/json',
