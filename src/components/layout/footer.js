@@ -10,7 +10,7 @@ import {
  } from '@ant-design/icons'
 
 export function Footer(props) {
-  const path = window.location.pathname
+  const path = props.skeleton ? "/" : window.location.pathname
 
   return (
     <>

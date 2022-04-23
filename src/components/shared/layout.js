@@ -1,13 +1,13 @@
 import Head from "next/head"
 import React, { useEffect, useState } from "react"
 import Footer from "../layout/footer"
-import { Spin } from "antd"
 import { CheckToken, DeleteToken } from "../../services/login-service"
-import Image from "next/image"
+import Skeleton from "./skeleton"
 
 export default function Layout(props) {
   const [loading, setLoading] = useState(true)
   const [valid, setValid] = useState(undefined)
+  const [offline, setOffline] = useState(false)
   const [activeWorkout, setActiveWorkout] = useState(false)
 
   useEffect(() => {
@@ -20,13 +20,16 @@ export default function Layout(props) {
     if (data) {
       setValid(data.valid)
       setActiveWorkout(data.active_workout)
+    } else {
+      setOffline(true)
     }
   }
 
   function renderView() {
+
     if (loading) {
       return (
-        <Spin size="large" style={spinnerStyling} />
+        <Skeleton />
       )
     }
 
@@ -44,16 +47,9 @@ export default function Layout(props) {
       window.location = "/login"
     }
 
-    if (!loading && !valid) {
+    if (!loading && offline) {
       // Means that we can't react the API
-      return (
-        <div>
-          <div style={{ marginLeft: "auto", marginRight: "auto", width: "450px" }}>
-            <Image src="/carneicon.png" width="450px" height="560px" alt="Carne" />
-          </div>
-          <p>You are offline ;(</p>
-        </div>
-      )
+      return <Skeleton offline />
     }
   }
 
