@@ -37,7 +37,7 @@ export default function Settings(props) {
   async function changeScheduleType(e) {
     const value = e.target.value
     await SetScheduleType({ change: true, type: value })
-    location.reload()
+    fetchData()
   }
 
   if (loading) {
