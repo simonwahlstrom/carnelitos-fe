@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { StoreToken } from "../src/services/login-service"
 
-export default function Login() {
+export default function Signup() {
   const [username, setUsername] = useState(undefined)
   const [password, setPassword] = useState(undefined)
   const [error, setError] = useState(undefined)
@@ -11,11 +11,11 @@ export default function Login() {
 
     e.preventDefault()
     const body = {
-      username,
+      email: username,
       password
     }
     try {
-      const response = await fetch(process.env.CARNE_API_URL + '/api/v1/login', {
+      const response = await fetch(process.env.CARNE_API_URL + '/api/v2/users', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -29,7 +29,7 @@ export default function Login() {
         StoreToken(data.token)
         window.location = "/"
       } else {
-        setError("Invalid login")
+        setError("Nope that did not work. Try something else")
       }
     } catch (err) {
       console.log(err)
@@ -40,7 +40,7 @@ export default function Login() {
 
   return (
     <div className="devise-form">
-      <h2>Log in</h2>
+      <h2>Create account</h2>
       <form
         className="new_user"
       >
@@ -65,13 +65,13 @@ export default function Login() {
             className="login-button"
             onClick={(e) => handleLogin(e)}
             disabled={!username || !password}
-          >Log in</button>
+          >Create account</button>
         </div>
       </form>
       {/* <a href="/users/sign_up">Sign up</a> */}
       <br />
       {error && <div>{error}</div>}
-      <a href="/sign-up">Create account</a>
+      <a href="/login">Login</a>
     </div>
   );
 }
