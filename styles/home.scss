@@ -4,6 +4,10 @@ body {
     padding: 1rem;
   }
 
+  textarea:focus, input:focus{
+    outline: none !important;
+  }
+
   margin-top: -1px !important;
   overflow-y: scroll;
   overflow-x: hidden;

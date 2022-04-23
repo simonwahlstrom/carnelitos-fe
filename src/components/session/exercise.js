@@ -52,7 +52,7 @@ export function Exercise(props) {
         <tr style={{ height: 60 }}>
           <td style={{ width: "35%", padding: 0}}>
             <Input
-              style={{ height: 50 }}
+              style={{ height: 60 }}
               prefix="Weight: "
               name="weight"
               type="number"
@@ -63,7 +63,7 @@ export function Exercise(props) {
           </td>
           <td style={{ width: "50%", padding: 0}}>
             <Input
-              style={{ height: 50 }}
+              style={{ height: 60 }}
               prefix={`Reps (${props.exercise.reps}): `}
               name="reps"
               type="number"
