@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { StoreToken } from "../src/services/login-service"
 
-export default function login() {
+export default function Login() {
   const [username, setUsername] = useState(undefined)
   const [password, setPassword] = useState(undefined)
   const [error, setError] = useState(undefined)
@@ -54,7 +54,7 @@ export default function login() {
         </div>
         <div className="field">
           <input
-            autocomplete="off"
+            autoComplete="off"
             placeholder="Password"
             type="password"
             onChange={(e) => setPassword(e.target.value)}

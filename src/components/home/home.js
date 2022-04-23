@@ -13,13 +13,6 @@ export function Home(props) {
   const [workouts, setWorkouts] = useState([])
   const [activeWorkout, setActiveWorkout] = useState(false)
 
-  const fetchData = async () => {
-    const data = await GetWorkouts()
-    updateData(data)
-    StoreLocally(data)
-    setLoading(false)
-  }
-
   function updateData(data) {
     if (data) {
       setWorkouts(data.workouts)
@@ -32,6 +25,12 @@ export function Home(props) {
     const localData = GetLocally()
     if (localData) {
       updateData(localData)
+    }
+    const fetchData = async () => {
+      const data = await GetWorkouts()
+      updateData(data)
+      StoreLocally(data)
+      setLoading(false)
     }
     fetchData()
     setLoading(false)
@@ -56,7 +55,7 @@ export function Home(props) {
 
   return (
     <div className="Container" style={{ marginTop: "30px" }}>
-      <p>Seems like you don't have any workouts yet...</p>
+      <p>Seems like you do not have any workouts yet...</p>
       <p>Get started now!</p>
       <p>
         <Button

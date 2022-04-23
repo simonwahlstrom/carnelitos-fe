@@ -49,7 +49,7 @@ export default function Layout(props) {
       return (
         <div>
           <div style={{ marginLeft: "auto", marginRight: "auto", width: "450px" }}>
-            <Image src="/carneicon.png" width="450px" height="560px" />
+            <Image src="/carneicon.png" width="450px" height="560px" alt="Carne" />
           </div>
           <p>You are offline ;(</p>
         </div>
