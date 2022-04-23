@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import Footer from "../layout/footer"
 import { Spin } from "antd"
 import { CheckToken, DeleteToken } from "../../services/login-service"
+import Image from "next/image"
 
 export default function Layout(props) {
   const [loading, setLoading] = useState(true)
@@ -39,6 +40,18 @@ export default function Layout(props) {
     if (!loading && valid == false) {
       DeleteToken()
       window.location = "/login"
+    }
+
+    if (!loading && !valid) {
+      // Means that we can't react the API
+      return (
+        <div>
+          <div style={{ marginLeft: "auto", marginRight: "auto", width: "450px" }}>
+            <Image src="/carneicon.png" width="450px" height="560px" />
+          </div>
+          <p>You are offline ;(</p>
+        </div>
+      )
     }
   }
 
