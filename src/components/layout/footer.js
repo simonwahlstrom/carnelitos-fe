@@ -35,6 +35,7 @@ const FooterStyling = styled.div`
     left: 0;
     bottom: 0;
     width: 100%;
+    z-index: 1000;
     button {
       flex: auto;
       height: 5rem;

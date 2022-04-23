@@ -28,6 +28,10 @@
       background-color: #262629;
       border-radius: 0;
       border-color: #262629;
+
+      &:focus {
+        outline: none;
+      }
     }
 
     &.react-tabs__tab--disabled {
