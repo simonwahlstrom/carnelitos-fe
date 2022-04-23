@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import ToggleButton from "./toggle-button"
 import { Notification } from "../notifications/notification"
 import { SaveSet } from "../../services/session-service"
+import { Input } from "antd"
 
 export function Exercise(props) {
   const [data, setData] = useState(props.data.sets)
@@ -45,23 +46,14 @@ export function Exercise(props) {
     setData(newData)
   }
 
-  function exercise() {
-    return <React.Fragment>
-      <tr>
-        <td style={{width: "50%"}}>Weight</td>
-        <td style={{ width: "40%" }}>{props.exercise.reps}</td>
-        <td style={{ width: "10%" }}></td>
-      </tr>
-      {exerciseData()}
-    </React.Fragment>
-  }
-
   function exerciseData() {
     return data.map((e, index) => {
       return <React.Fragment key={index}>
-        <tr>
-          <td style={{ width: "65%" }}>
-            <input
+        <tr style={{ height: 60 }}>
+          <td style={{ width: "35%", padding: 0}}>
+            <Input
+              style={{ height: 50 }}
+              prefix="Weight: "
               name="weight"
               type="number"
               className="form-control weight"
@@ -69,8 +61,10 @@ export function Exercise(props) {
               onChange={(e) => updateValue(e, index)}
             />
           </td>
-          <td style={{ width: "25%" }}>
-            <input
+          <td style={{ width: "50%", padding: 0}}>
+            <Input
+              style={{ height: 50 }}
+              prefix={`Reps (${props.exercise.reps}): `}
               name="reps"
               type="number"
               className="form-control reps"
@@ -78,7 +72,7 @@ export function Exercise(props) {
               onChange={(e) => updateValue(e, index)}
             />
           </td>
-          <td style={{ width: "10%" }}>
+          <td style={{ width: "10%" , padding: 0}}>
             <ToggleButton
               loading={loading}
               completed={e.completed}
@@ -92,9 +86,9 @@ export function Exercise(props) {
   }
 
   return (
-    <table className="table table-sm">
+    <table style={{ width: "100%" }}>
       <tbody>
-        {exercise()}
+        {exerciseData()}
       </tbody>
     </table>
     )

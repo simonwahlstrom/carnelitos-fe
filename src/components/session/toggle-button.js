@@ -8,7 +8,7 @@ export default function ToggleButton(props) {
       disabled={props.disabled}
       type={props.completed ? "primary" : "default"}
       onClick={() => props.saveSet(props.index)}
-      style={{width: "100%", height: "36px"}}
+      style={{width: "100%", height: 50}}
       loading={props.loading}
       icon={props.completed ? <CheckOutlined /> : <ClockCircleOutlined />}
     >Check</Button>

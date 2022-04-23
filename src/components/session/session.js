@@ -39,7 +39,7 @@ export function Session() {
           forceRender={true}
           showArrow={false}
           extra={<Icons name={e.name} />}
-          style={isCompleted ? { background: "#67c172", textAlign: "center" } : { textAlign: "center" }}
+          style={isCompleted ? { background: "#67c172", textAlign: "center" } : { textAlign: "center"}}
           >
           <Exercise
             exercise={e}
