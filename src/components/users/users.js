@@ -1,7 +1,7 @@
 import React from "react"
 import Schedule from '../home/schedule/schedule'
 
-export function Show(props) {
+export function Users(props) {
   const schedule = Array.isArray(props.workouts) ? "flex" : "fixed"
   return <div>
     <Schedule

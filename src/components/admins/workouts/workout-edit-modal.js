@@ -1,6 +1,6 @@
 import React from "react"
 import { Modal, Form, Input, Button, Switch } from 'antd'
-import { GetToken } from "../../../../services/login-service"
+import { GetToken } from "../../../services/login-service"
 
 class WorkoutEditModal extends React.Component {
   constructor(props) {
