@@ -53,7 +53,7 @@ export function Session(props) {
         <ExerciseTabs loading={loading} exercises={exercises} video={video} />
       </Modal>
       <InfoCircleOutlined
-        style={{ marginRight: "10px" }}
+        style={{ marginRight: "10px", fontSize: 18, position: "relative", top: 5 }}
         onClick={event => {
           getHistory(props.name)
           videoSearch(props.name)

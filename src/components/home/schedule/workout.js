@@ -38,7 +38,7 @@ export function Workout(props) {
   }
 
   return <div className="container">
-    <h4 className="name">{workout.name}</h4>
+    <h2 className="name">{workout.name}</h2>
     <Table dataSource={workout.exercises} columns={columns} loading={loading} pagination={false}/>
     <Button
       onClick={() => startSession(workout.id)}

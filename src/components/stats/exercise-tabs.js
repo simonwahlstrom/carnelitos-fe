@@ -41,11 +41,11 @@ export function ExerciseTabs(props) {
           }
         </div>
       </Tabs.TabPane>
-      <Tabs.TabPane tab="Video" key="z" disabled={!props.exercises}>
+      {/* <Tabs.TabPane tab="Video" key="z" disabled={!props.exercises}>
         <div className="video">
           <YoutubePlayer id={props.video} />
         </div>
-      </Tabs.TabPane>
+      </Tabs.TabPane> */}
     </Tabs>
   )
 }
