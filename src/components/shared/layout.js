@@ -78,12 +78,3 @@ export default function Layout(props) {
     </>
   )
 }
-
-const spinnerStyling = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  textAlign: "center",
-  minHeight: "100vh",
-}

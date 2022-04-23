@@ -165,12 +165,3 @@ const ButtonStyling = styled.div`
 `;
 
 export default Session
-
-const spinnerStyling = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  textAlign: "center",
-  minHeight: "100vh",
-}

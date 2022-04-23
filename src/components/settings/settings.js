@@ -96,12 +96,3 @@ export default function Settings(props) {
     </div>
   )
 }
-
-const spinnerStyling = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  textAlign: "center",
-  minHeight: "100vh",
-}
