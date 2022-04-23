@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button, Icon } from "antd"
+import { Button } from "antd"
 
 export function FooterButton(props) {
   const [loading, setLoading] = useState(false)

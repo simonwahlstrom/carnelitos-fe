@@ -13,14 +13,17 @@ export function Footer(props) {
   const path = window.location.pathname
 
   return (
-    <FooterStyling>
-      <div className='footer'>
-        <FooterButton icon={HomeOutlined} active={true} url="/" highlighted={path === "/"} />
-        <FooterButton icon={PlayCircleOutlined} active={props.active_workout} url="/sessions/new" highlighted={path === "/sessions/new"} />
-        <FooterButton icon={LineChartOutlined} active={true} url="/stats" highlighted={path === "/stats"} />
-        <FooterButton icon={ScheduleOutlined} active={true} url="/settings" highlighted={path === "/settings"} />
-      </div>
-    </FooterStyling>
+    <>
+      <div style={{ margin: "1px", height: "1px", width: "100%" }} />
+      <FooterStyling>
+        <div className='footer'>
+          <FooterButton icon={HomeOutlined} active={true} url="/" highlighted={path === "/"} />
+          <FooterButton icon={PlayCircleOutlined} active={props.active_workout} url="/sessions/new" highlighted={path === "/sessions/new"} />
+          <FooterButton icon={LineChartOutlined} active={true} url="/stats" highlighted={path === "/stats"} />
+          <FooterButton icon={ScheduleOutlined} active={true} url="/settings" highlighted={path === "/settings"} />
+        </div>
+      </FooterStyling>
+    </>
   )
 }
 
