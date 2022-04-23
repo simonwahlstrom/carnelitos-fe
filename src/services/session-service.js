@@ -26,6 +26,20 @@ export async function SaveSession(session, sync = false) {
   }
 }
 
+export async function GetActiveSession() {
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${GetToken()}`
+  }
+
+  const response = await fetch('http://localhost:3000/api/v2/sessions/', {
+    headers: headers,
+  })
+
+  return await response.json()
+}
+
 export async function DeleteSession(session) {
   const headers = {
     'Accept': 'application/json',

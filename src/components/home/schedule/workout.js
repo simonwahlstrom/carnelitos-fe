@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Table } from "antd"
 import Icons from "../../session/icons"
+import { StartWorkout } from '../../../services/workout-service'
 
 export function Workout(props) {
   const [loading, setLoading] = useState(false)
@@ -27,11 +28,18 @@ export function Workout(props) {
       width: '6rem'
     },
   ]
+
+  async function startSession(id) {
+    setLoading(true)
+    await StartWorkout(id)
+    window.location = "/session"
+  }
+
   return <div className="container">
     <h4 className="name">{workout.name}</h4>
     <Table dataSource={workout.exercises} columns={columns} loading={loading} pagination={false}/>
     <Button
-      onClick={() => { setLoading(true), window.location.href = "/sessions/new?workout=" + workout.id }}
+      onClick={() => startSession(workout.id)}
       disabled={activeWorkout}
       type="primary"
       loading={loading}

@@ -1,27 +1,35 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Exercise from "./exercise"
 import Timer from "./timer"
 import { Notification } from "../notifications/notification"
-import { Button, Collapse, Popconfirm } from 'antd'
+import { Button, Collapse, Popconfirm, Spin } from 'antd'
 import styled from 'styled-components'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import { SaveOffline, RemoveOffline } from "../../services/sync-manager"
-import { SaveSession, DeleteSession } from "../../services/session-service"
+import { SaveSession, DeleteSession, GetActiveSession } from "../../services/session-service"
 import Icons from "./icons"
 
-export function Session(props) {
-  const [workout] = useState(props.workout)
-  const [session] = useState(SyncSession)
+export function Session() {
+  const [loading, setLoading] = useState(true)
+  const [workout, setWorkout] = useState(undefined)
+  const [session, setSession] = useState(undefined)
   const [deadline, setDeadline] = useState(new Date(localStorage.getItem('timer')))
-  const [loading, setLoading] = useState(false)
 
-  function SyncSession() {
-    const localSession = JSON.parse(localStorage.getItem(`session-${props.session.id}`))
-    return localSession ? localSession : props.session
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    const data = await GetActiveSession()
+    setWorkout(data.workout)
+    const localSession = JSON.parse(localStorage.getItem(`session-${data.session.id}`))
+    setSession(localSession ? localSession : data.session)
+    setLoading(false)
   }
 
   function renderExercises(exercises, session) {
     const data = session.exercises
+    console.log(data)
     const { Panel } = Collapse
     return exercises.map((e, index) => {
       const isCompleted = Object.values(data[index].sets).every(item => item.completed)
@@ -112,6 +120,12 @@ export function Session(props) {
     }
   }
 
+  if (loading) {
+    return (
+      <Spin size="large" style={spinnerStyling} />
+    )
+  }
+
   return (
     <Tabs>
       <TabList>
@@ -151,3 +165,12 @@ const ButtonStyling = styled.div`
 `;
 
 export default Session
+
+const spinnerStyling = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  textAlign: "center",
+  minHeight: "100vh",
+}
