@@ -1,7 +1,7 @@
 import Head from "next/head"
 import React, { useEffect, useState } from "react"
 import Footer from "../layout/footer"
-import { CheckToken, DeleteToken } from "../../services/login-service"
+import { GetToken, CheckToken, DeleteToken } from "../../services/login-service"
 import Skeleton from "./skeleton"
 import { useRouter } from "next/router"
 
@@ -13,6 +13,12 @@ export default function Layout(props) {
   const router = useRouter()
 
   useEffect(() => {
+    const token = GetToken()
+    if (token) {
+      // We have a token. Let's pretend it's valid
+      // so we can continue render. If not we go to login
+      setValid(true)
+    }
     fetchData()
     setLoading(false)
   }, [])
@@ -35,7 +41,7 @@ export default function Layout(props) {
       )
     }
 
-    if (!loading && valid) {
+    if (valid) {
       return (
         <>
           {children}
