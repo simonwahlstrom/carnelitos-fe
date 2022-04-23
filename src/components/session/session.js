@@ -8,6 +8,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import { SaveOffline, RemoveOffline } from "../../services/sync-manager"
 import { SaveSession, DeleteSession, GetActiveSession } from "../../services/session-service"
 import Icons from "./icons"
+import Skeleton from "../shared/skeleton"
 
 export function Session() {
   const [loading, setLoading] = useState(true)
@@ -121,7 +122,7 @@ export function Session() {
 
   if (loading) {
     return (
-      <Spin size="large" style={spinnerStyling} />
+      <Skeleton />
     )
   }
 

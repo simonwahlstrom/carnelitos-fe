@@ -7,6 +7,7 @@ import {
   StoreLocally,
   GetLocally,
 } from "../../services/workout-service"
+import Skeleton from "../shared/skeleton"
 
 export function Home(props) {
   const [loading, setLoading] = useState(true)
@@ -37,7 +38,7 @@ export function Home(props) {
   }, [])
 
   if (loading) {
-    return <Spin size="large" style={spinnerStyling} />
+    return <Skeleton />
   }
 
   if (Object.entries(workouts).length > 0) {

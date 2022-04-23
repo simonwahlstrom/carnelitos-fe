@@ -8,6 +8,7 @@ import FixedWorkoutTable from "./tables/fixedWorkouts"
 import { SetScheduleType } from "../../services/schedule-service"
 import Workouts from "../workouts/builder/workouts/workouts"
 import { GetSettings } from '../../services/settings-service'
+import Skeleton from '../shared/skeleton'
 
 export default function Settings(props) {
   const [loading, setLoading] = useState(true)
@@ -41,7 +42,7 @@ export default function Settings(props) {
   }
 
   if (loading) {
-    return <Spin size="large" style={spinnerStyling} />
+    return <Skeleton />
   }
 
   return (
