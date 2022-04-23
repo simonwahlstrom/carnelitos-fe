@@ -29,7 +29,6 @@ export function Session() {
 
   function renderExercises(exercises, session) {
     const data = session.exercises
-    console.log(data)
     const { Panel } = Collapse
     return exercises.map((e, index) => {
       const isCompleted = Object.values(data[index].sets).every(item => item.completed)

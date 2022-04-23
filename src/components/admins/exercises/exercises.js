@@ -101,7 +101,6 @@ class Exercises extends React.Component {
   }
 
   setSelectedExercise = (record) => {
-    console.log(record)
     this.setState({ selectedExercise: record })
   }
 

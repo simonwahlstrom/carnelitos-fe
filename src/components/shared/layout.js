@@ -8,6 +8,7 @@ import Image from "next/image"
 export default function Layout(props) {
   const [loading, setLoading] = useState(true)
   const [valid, setValid] = useState(undefined)
+  const [activeWorkout, setActiveWorkout] = useState(false)
 
   useEffect(() => {
     fetchData()
@@ -18,6 +19,7 @@ export default function Layout(props) {
     const data = await CheckToken()
     if (data) {
       setValid(data.valid)
+      setActiveWorkout(data.active_workout)
     }
   }
 
@@ -32,7 +34,7 @@ export default function Layout(props) {
       return (
         <>
           {children}
-          <Footer logged_in={true} />
+          <Footer activeWorkout={activeWorkout} />
         </>
       )
     }
