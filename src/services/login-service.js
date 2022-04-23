@@ -8,7 +8,7 @@ export async function CheckToken() {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/v1/login', {
+    const response = await fetch(process.env.CARNE_API_URL + '/api/v1/login', {
       headers,
     })
     const valid = await response.json()

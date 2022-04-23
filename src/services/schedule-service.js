@@ -9,7 +9,7 @@ export async function AddToSchedule(body) {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/v2/schedules', {
+    const response = await fetch(process.env.CARNE_API_URL + '/api/v2/schedules', {
       method: 'POST',
       headers,
       body: JSON.stringify(body)
@@ -29,7 +29,7 @@ export async function MoveToDay(body) {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/v2/schedules/' + body.id, {
+    const response = await fetch(process.env.CARNE_API_URL + '/api/v2/schedules/' + body.id, {
       method: 'PATCH',
       headers,
       body: JSON.stringify(body)
@@ -48,7 +48,7 @@ export async function RemoveFromFlexibleSchedule(body) {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/v2/schedules/' + body.id, {
+    const response = await fetch(process.env.CARNE_API_URL + '/api/v2/schedules/' + body.id, {
       method: 'DELETE',
       headers,
       body: JSON.stringify(body)
@@ -67,7 +67,7 @@ export async function RemoveFromFixedSchedule(body) {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/v2/schedules/' + body.id, {
+    const response = await fetch(process.env.CARNE_API_URL + '/api/v2/schedules/' + body.id, {
       method: 'DELETE',
       headers,
       body: JSON.stringify(body)
@@ -86,7 +86,7 @@ export async function ChangeOrderOfFlexibleSchedule(body) {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/v2/schedules/1', {
+    const response = await fetch(process.env.CARNE_API_URL + '/api/v2/schedules/1', {
       method: 'PATCH',
       headers,
       body: JSON.stringify(body)
@@ -105,7 +105,7 @@ export async function SetScheduleType(body) {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/v2/schedules/1', {
+    const response = await fetch(process.env.CARNE_API_URL + '/api/v2/schedules/1', {
       method: 'PATCH',
       headers,
       body: JSON.stringify(body)

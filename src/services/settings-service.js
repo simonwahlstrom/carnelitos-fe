@@ -8,7 +8,7 @@ export async function GetSettings() {
   }
 
   try {
-    const response = await fetch(`http://localhost:3000/api/v2/settings`, {
+    const response = await fetch(process.env.CARNE_API_URL + `/api/v2/settings`, {
       headers: headers,
     })
     return await response.json()

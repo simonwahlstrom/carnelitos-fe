@@ -15,7 +15,7 @@ export default function login() {
       password
     }
     try {
-      const response = await fetch('http://localhost:3000/api/v1/login', {
+      const response = await fetch(process.env.CARNE_API_URL + '/api/v1/login', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

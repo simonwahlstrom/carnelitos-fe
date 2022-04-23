@@ -9,7 +9,7 @@ export async function GetWorkouts() {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/v2/home', {
+    const response = await fetch(process.env.CARNE_API_URL + '/api/v2/home', {
       headers,
     })
     return await response.json()
@@ -26,7 +26,7 @@ export async function StartWorkout(id) {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/v2/sessions/new?workout=' + id, {
+    const response = await fetch(process.env.CARNE_API_URL + '/api/v2/sessions/new?workout=' + id, {
     headers,
     })
     return await response.json()

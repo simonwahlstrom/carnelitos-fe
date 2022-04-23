@@ -15,7 +15,7 @@ export async function SaveSession(session, sync = false) {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/v2/sessions?sync=' + sync, {
+    const response = await fetch(process.env.CARNE_API_URL + '/api/v2/sessions?sync=' + sync, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(Session)
@@ -29,7 +29,7 @@ export async function SaveSession(session, sync = false) {
 
 export async function SaveSet(set) {
   try {
-    const response = await fetch('http://localhost:3000/api/v2/sessions', {
+    const response = await fetch(process.env.CARNE_API_URL + '/api/v2/sessions', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -50,7 +50,7 @@ export async function GetActiveSession() {
     'Authorization': `Bearer ${GetToken()}`
   }
 
-  const response = await fetch('http://localhost:3000/api/v2/sessions/', {
+  const response = await fetch(process.env.CARNE_API_URL + '/api/v2/sessions/', {
     headers: headers,
   })
 
@@ -65,7 +65,7 @@ export async function DeleteSession(session) {
   }
 
   RemoveOffline(session.id)
-  const response = await fetch('http://localhost:3000/api/v2/sessions/' + session.id, {
+  const response = await fetch(process.env.CARNE_API_URL + '/api/v2/sessions/' + session.id, {
     method: 'DELETE',
     headers: headers,
   })

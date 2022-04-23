@@ -20,7 +20,7 @@ export function Session(props) {
     }
 
     setLoading(true)
-    const response = await fetch(`http://localhost:3000/api/v1/stats?q=${name}&exact=true`, {
+    const response = await fetch(process.env.CARNE_API_URL + `/api/v1/stats?q=${name}&exact=true`, {
       headers: headers,
     })
     if (response.ok) {

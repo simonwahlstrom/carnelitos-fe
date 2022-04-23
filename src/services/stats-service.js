@@ -8,7 +8,7 @@ export async function GetStats(path) {
   }
 
   try {
-    const response = await fetch(`http://localhost:3000/api/v1/stats?${path}`, {
+    const response = await fetch(process.env.CARNE_API_URL + `/api/v1/stats?${path}`, {
       headers: headers,
     })
     return await response.json()
@@ -25,7 +25,7 @@ export async function GetAllExercises() {
   }
 
   try {
-    const response = await fetch(`http://localhost:3000/api/v2/stats`, {
+    const response = await fetch(process.env.CARNE_API_URL + `/api/v2/stats`, {
       headers: headers,
     })
     return await response.json()
