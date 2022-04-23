@@ -1,4 +1,5 @@
 import { SaveOffline, RemoveOffline } from "./sync-manager"
+import { Notification } from "../components/notifications/notification"
 import { GetToken } from "./login-service"
 
 export async function SaveSession(session, sync = false) {
@@ -23,6 +24,22 @@ export async function SaveSession(session, sync = false) {
   } catch (err) {
     session.finished = true
     SaveOffline(session)
+  }
+}
+
+export async function SaveSet(set) {
+  try {
+    const response = await fetch('http://localhost:3000/api/v2/sessions', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${GetToken()}`
+      },
+      body: JSON.stringify(set)
+    })
+  } catch (err) {
+    Notification("No connection", "Don't worry, we will try and sync your data later.")
   }
 }
 

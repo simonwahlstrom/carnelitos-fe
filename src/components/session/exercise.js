@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import ToggleButton from "./toggle-button"
 import { Notification } from "../notifications/notification"
+import { SaveSet } from "../../services/session-service"
 
 export function Exercise(props) {
   const [data, setData] = useState(props.data.sets)
@@ -31,22 +32,11 @@ export function Exercise(props) {
 
     setLoading(false)
 
-    try {
-      const response = await fetch('http://localhost:3000/api/v2/sessions', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(set)
-      })
-    } catch (err) {
-      Notification("No connection", "Don't worry, we will try and sync your data later.")
-    }
+    await SaveSet(set)
   }
 
   function updateValue(e, index) {
-    $(e.target).removeClass('is-invalid')
+    // $(e.target).removeClass('is-invalid')
     const newData = [...data]
     const value = e.target.value
     const name = e.target.name

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from "antd"
+import { CheckOutlined, ClockCircleOutlined } from "@ant-design/icons"
 
 export default function ToggleButton(props) {
   return (
@@ -9,7 +10,7 @@ export default function ToggleButton(props) {
       onClick={() => props.saveSet(props.index)}
       style={{width: "100%", height: "36px"}}
       loading={props.loading}
-      icon={props.completed ? "check" : "clock-circle"}
+      icon={props.completed ? <CheckOutlined /> : <ClockCircleOutlined />}
     >Check</Button>
   )
 }

@@ -84,16 +84,16 @@ export function Session() {
 
   function verifyWorkout() {
     let valid = true
-    $('input.form-control').removeClass('is-invalid')
+    // $('input.form-control').removeClass('is-invalid')
     const sets = session.exercises.flatMap((e) => e.sets)
     sets.map((s, index) => {
       if (!s.weight || s.weight.length < 1) {
         valid = false
-        $($("input.form-control.weight")[index]).addClass("is-invalid")
+        // $($("input.form-control.weight")[index]).addClass("is-invalid")
       }
       if (!s.reps || s.reps.length < 1) {
         valid = false
-        $($("input.form-control.reps")[index]).addClass("is-invalid")
+        // $($("input.form-control.reps")[index]).addClass("is-invalid")
       }
     })
     if (!valid) {

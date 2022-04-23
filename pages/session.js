@@ -4,7 +4,9 @@ import Layout from "../src/components/shared/layout"
 export default function session() {
   return (
     <Layout>
-      <Session />
+      <div className="session">
+        <Session />
+      </div>
     </Layout>
   )
 }
