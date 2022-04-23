@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react"
 import Footer from "../layout/footer"
 import { CheckToken, DeleteToken } from "../../services/login-service"
 import Skeleton from "./skeleton"
+import { useRouter } from "next/router"
 
 export default function Layout(props) {
   const [loading, setLoading] = useState(true)
   const [valid, setValid] = useState(undefined)
   const [offline, setOffline] = useState(false)
   const [activeWorkout, setActiveWorkout] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     fetchData()
@@ -44,7 +46,7 @@ export default function Layout(props) {
 
     if (!loading && valid == false) {
       DeleteToken()
-      window.location = "/login"
+      router.push("/login")
     }
 
     if (!loading && offline) {

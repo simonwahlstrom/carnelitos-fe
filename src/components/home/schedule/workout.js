@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { Button, Table } from "antd"
 import Icons from "../../session/icons"
 import { StartWorkout } from '../../../services/workout-service'
+import { useRouter } from 'next/router'
 
 export function Workout(props) {
   const [loading, setLoading] = useState(false)
   const { workout, activeWorkout } = props
+  const router = useRouter()
   const columns = [
     {
       title: 'Exercise',
@@ -32,7 +34,7 @@ export function Workout(props) {
   async function startSession(id) {
     setLoading(true)
     await StartWorkout(id)
-    window.location = "/session"
+    router.push("/session")
   }
 
   return <div className="container">

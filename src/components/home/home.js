@@ -8,11 +8,14 @@ import {
   GetLocally,
 } from "../../services/workout-service"
 import Skeleton from "../shared/skeleton"
+import { useRouter } from "next/router"
 
 export function Home(props) {
   const [loading, setLoading] = useState(true)
   const [workouts, setWorkouts] = useState([])
   const [activeWorkout, setActiveWorkout] = useState(false)
+
+  const router = useRouter()
 
   function updateData(data) {
     if (data) {
@@ -62,7 +65,7 @@ export function Home(props) {
         <Button
           type="primary"
           size="large"
-          onClick={() => (window.location = "/settings")}
+          onClick={() => (router.push("/settings"))}
         >
           Go to schedule
         </Button>

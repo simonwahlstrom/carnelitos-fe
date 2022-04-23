@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { useRouter } from "next/router"
 import React, { useState } from "react"
 import { StoreToken } from "../src/services/login-service"
 
@@ -6,6 +7,8 @@ export default function Signup() {
   const [username, setUsername] = useState(undefined)
   const [password, setPassword] = useState(undefined)
   const [error, setError] = useState(undefined)
+
+  const router = useRouter()
 
   async function handleLogin(e) {
     setError(undefined)
@@ -28,7 +31,7 @@ export default function Signup() {
 
       if (data.token) {
         StoreToken(data.token)
-        window.location = "/"
+        router.push("/")
       } else {
         setError("Nope that did not work. Try something else")
       }
@@ -69,7 +72,6 @@ export default function Signup() {
           >Create account</button>
         </div>
       </form>
-      {/* <a href="/users/sign_up">Sign up</a> */}
       <br />
       {error && <div>{error}</div>}
       <Link href="/sign-up">

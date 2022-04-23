@@ -1,12 +1,14 @@
 import React, { useState } from "react"
+import { useRouter } from 'next/router'
 import { Button } from "antd"
 
 export function FooterButton(props) {
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
   function handeClick() {
     setLoading(true)
-    window.location.href = props.url
+    router.push(props.url)
   }
 
   const Icon = props.icon
