@@ -1,3 +1,4 @@
+import Link from "next/link"
 import React, { useState } from "react"
 import { StoreToken } from "../src/services/login-service"
 
@@ -71,7 +72,9 @@ export default function Login() {
       {/* <a href="/users/sign_up">Sign up</a> */}
       <br />
       {error && <div>{error}</div>}
-      <a href="/sign-up">Create account</a>
+      <Link href="/sign-up">
+        <a>Create account</a>
+      </Link>
     </div>
   );
 }
