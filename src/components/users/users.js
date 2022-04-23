@@ -11,4 +11,4 @@ export function Users(props) {
   </div>
 }
 
-export default Show
+export default Users
