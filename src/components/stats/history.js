@@ -1,7 +1,10 @@
-import React from "react"
-import { Table, Spin } from 'antd'
+import React, { useState } from "react"
+import { Table, Spin, Drawer } from "antd"
 
 export default function History(props) {
+  const [drawerVisible, setDrawerVisible] = useState(false)
+  const [drawerTitle, setDrawerTitle] = useState("")
+  const [selectedExercises, setSelectedExercises] = useState([])
 
   function exercises(exercises) {
     const data = exercises.map(e => {
@@ -15,36 +18,61 @@ export default function History(props) {
       })
     })
     const columns = [
-      { title: 'Name', dataIndex: 'name', key: 'name' },
-      { title: 'Reps', dataIndex: 'reps', key: 'reps' },
-      { title: 'Weight', dataIndex: 'weight', key: 'weight' },
+      { title: "Name", dataIndex: "name", key: "name" },
+      { title: "Weight", dataIndex: "weight", key: "weight" },
+      { title: "Reps", dataIndex: "reps", key: "reps" },
     ]
 
-    return <Table
-      columns={columns}
-      dataSource={data.flat()}
-      pagination={{ defaultPageSize: 20, hideOnSinglePage: true }}
-    />
+    return (
+      <Table
+        columns={columns}
+        dataSource={data.flat()}
+        pagination={{ defaultPageSize: 20, hideOnSinglePage: true }}
+      />
+    )
+  }
+
+  function openDrawer(exercises, title) {
+    setSelectedExercises(exercises)
+    setDrawerTitle(title)
+    setDrawerVisible(true)
   }
 
   const columns = [
-    { title: 'Name', dataIndex: 'name', key: 'name' },
-    { title: 'Completed', dataIndex: 'finished', key: 'finished' },
+    { title: "Name", dataIndex: "name", key: "name" },
+    { title: "Completed", dataIndex: "finished", key: "finished" },
   ]
 
   if (props.loadingHistory) {
     return <Spin size="large" style={spinnerStyling} />
   }
-  return <div className="container">
+  return (
+    <div className="container">
       <Table
         columns={columns}
-        expandedRowRender={record => exercises(record.exercises)}
         dataSource={props.history}
-        expandRowByClick={true}
         pagination={{ defaultPageSize: 15 }}
+        onRow={(record, index) => {
+          return {
+            onClick: event => {
+              openDrawer(
+                record.exercises,
+                `${record.name} - ${record.finished}`,
+              )
+            },
+          }
+        }}
       />
-  </div>
-
+      <Drawer
+        title={drawerTitle}
+        visible={drawerVisible}
+        onClose={() => setDrawerVisible(false)}
+        placement="right"
+      >
+        {exercises(selectedExercises)}
+      </Drawer>
+    </div>
+  )
 }
 
 const spinnerStyling = {
