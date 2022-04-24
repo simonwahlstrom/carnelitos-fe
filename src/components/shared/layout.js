@@ -80,7 +80,8 @@ export default function Layout(props) {
         <meta name="msapplication-TileColor" content="#9ac05a" />
         <meta name="theme-color" content="#ffffff" />
         <meta name="apple-mobile-web-app-capable" content="yes"></meta>
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        {/* <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> */}
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <title>Carnelitos</title>
       </Head>
       <>
