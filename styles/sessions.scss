@@ -20,31 +20,21 @@
     text-align: center;
     display: inherit;
     font-size: 1.5rem;
-    background-color: #b9b9b9;
+    background-color: #262629;
     z-index: 1000;
     width: 10rem;
-    opacity: 0.8;
+    color: white;
     left: 50%;
-    top: 3%;
+    top: 1%;
     margin-left: -5rem;
+
+    .ant-statistic-title, .ant-statistic-content-value {
+      color: white !important;
+    }
   }
 
   button.check {
     width: 100%;
-  }
-
-  .timer {
-    width: 25rem;
-    background-color: #43d641;
-    height: 3rem;
-    position: absolute;
-    top: 1rem;
-    left: 50%;
-    z-index: 2;
-
-    span {
-      text-align: center;
-    }
   }
 
   .buttons {
