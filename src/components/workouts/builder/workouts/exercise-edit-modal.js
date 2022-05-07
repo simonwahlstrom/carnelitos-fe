@@ -1,5 +1,6 @@
 import React from "react"
 import { Modal, Form, Input, Button } from 'antd'
+import { handleExercise } from "../../../../services/exercises-service"
 
 class ExerciseEditModal extends React.Component {
   constructor(props) {
@@ -20,14 +21,7 @@ class ExerciseEditModal extends React.Component {
 
   handleOk = async e => {
     const exercise = this.state
-    await fetch(process.env.CARNE_API_URL + '/api/v2/exercises/' + exercise.id, {
-      method: 'PATCH',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(exercise)
-    })
+    await handleExercise(exercise.id, "PATCH", exercise)
     this.props.hideExerciseEdit(exercise)
   }
 
@@ -36,13 +30,7 @@ class ExerciseEditModal extends React.Component {
   }
 
   deleteExercise = async () => {
-    await fetch(process.env.CARNE_API_URL + '/api/v2/exercises/' + this.props.exercise.id, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
+    await handleExercise(this.props.exercise.id, "DELETE", {})
     this.props.hideExerciseEdit(this.props.exercise.id, true)
   }
 

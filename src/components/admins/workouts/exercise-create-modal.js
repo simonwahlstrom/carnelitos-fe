@@ -1,5 +1,6 @@
 import React from "react"
 import { AutoComplete, Modal, Form, Input } from 'antd'
+import { handleExercise } from "../../../services/exercises-service"
 
 class ExerciseCreateModal extends React.Component {
   constructor(props) {
@@ -26,18 +27,8 @@ class ExerciseCreateModal extends React.Component {
 
   handleOk = async e => {
     const exercise = this.state
-    await fetch(process.env.CARNE_API_URL + '/api/v2/exercises', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(exercise)
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      this.props.hideExerciseCreate(data)
-    })
+    const data = await handleExercise("", "POST", exercise)
+    this.props.hideExerciseCreate(data)
   }
 
   handleCancel = e => {
