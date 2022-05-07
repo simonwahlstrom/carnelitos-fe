@@ -32,12 +32,6 @@ export function Session(props) {
     setLoading(false)
   }
 
-  function videoSearch(name) {
-    YTSearch({ key: "AIzaSyC8RMBxjqtC8Bz-e9l0xwQ4TJjXJsrkVVo", term: name }, videos => {
-      setVideo(videos[0].id.videoId)
-    })
-  }
-
   return (
     <div>
       <Modal
@@ -56,7 +50,6 @@ export function Session(props) {
         style={{ marginRight: "10px", fontSize: 18, position: "relative", top: 5 }}
         onClick={event => {
           getHistory(props.name)
-          videoSearch(props.name)
           setInfoPopupVisible(true)
           event.stopPropagation()
         }}
@@ -65,9 +58,5 @@ export function Session(props) {
     </div>
   )
 }
-
-const IconStyling = styled.div`
-  font-size: 20px;
-`
 
 export default Session
