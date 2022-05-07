@@ -110,6 +110,7 @@ class Workouts extends React.Component {
         expandedRowRender={record => <Exercises exercises={record.exercises} workoutId={record.id} allExercises={this.props.all_exercises}/>}
         dataSource={this.state.workouts}
         expandRowByClick={true}
+        rowKey={"id"}
         pagination={{ defaultPageSize: 15 }}
         expandIconAsCell={false}
         expandIconColumnIndex={-1}
