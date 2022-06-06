@@ -4,10 +4,12 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import Workouts from "./workouts/workouts"
 import Exercises from "./exercises/exercises"
 import { LoginAsUser } from "../../services/admin-service"
+import { StoreToken } from "../../services/login-service"
 
 export default function Admins(props) {
   async function loginUser(id) {
     const data = await LoginAsUser(id)
+    StoreToken(data.token)
     window.location = "/"
   }
 

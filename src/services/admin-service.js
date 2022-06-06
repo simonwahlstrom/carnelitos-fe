@@ -26,8 +26,10 @@ export async function LoginAsUser(id) {
   }
 
   try {
-    const response = await fetch(process.env.CARNE_API_URL + '/api/v2/admins/' + id, {
+    const response = await fetch(process.env.CARNE_API_URL + '/api/v2/admins/', {
+    method: 'POST',
     headers,
+    body: JSON.stringify({id: id})
     })
     return await response.json()
   } catch (err) {
