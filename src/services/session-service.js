@@ -1,12 +1,10 @@
 import { SaveOffline, RemoveOffline } from "./sync-manager"
 import { Notification } from "../components/notifications/notification"
-import { GetToken } from "./login-service"
 
 export async function SaveSession(session, sync = false) {
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${GetToken()}`
   }
 
   const Session = {
@@ -34,7 +32,6 @@ export async function SaveSet(set) {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${GetToken()}`
       },
       body: JSON.stringify(set)
     })
@@ -47,7 +44,6 @@ export async function GetActiveSession() {
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${GetToken()}`
   }
 
   const response = await fetch(process.env.CARNE_API_URL + '/api/v2/sessions/', {
@@ -61,7 +57,6 @@ export async function DeleteSession(session) {
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${GetToken()}`
   }
 
   RemoveOffline(session.id)

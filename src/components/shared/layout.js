@@ -1,30 +1,24 @@
 import Head from "next/head"
 import React, { useEffect, useState } from "react"
 import Footer from "../layout/footer"
-import { GetToken, CheckToken, DeleteToken } from "../../services/login-service"
+import { CheckUser } from "../../services/login-service"
 import Skeleton from "./skeleton"
 import { useRouter } from "next/router"
 
 export default function Layout(props) {
   const [loading, setLoading] = useState(true)
-  const [valid, setValid] = useState(undefined)
+  const [valid, setValid] = useState(true)
   const [offline, setOffline] = useState(false)
   const [activeWorkout, setActiveWorkout] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
-    const token = GetToken()
-    if (token) {
-      // We have a token. Let's pretend it's valid
-      // so we can continue render. If not we go to login
-      setValid(true)
-    }
     fetchData()
     setLoading(false)
   }, [])
 
   const fetchData = async () => {
-    const data = await CheckToken()
+    const data = await CheckUser()
     if (data) {
       setValid(data.valid)
       setActiveWorkout(data.active_workout)
@@ -51,7 +45,6 @@ export default function Layout(props) {
     }
 
     if (!loading && valid == false) {
-      DeleteToken()
       router.push("/login")
     }
 

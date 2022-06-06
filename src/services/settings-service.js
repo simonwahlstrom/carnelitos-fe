@@ -1,10 +1,7 @@
-import { GetToken } from "./login-service"
-
 export async function GetSettings() {
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${GetToken()}`
   }
 
   try {

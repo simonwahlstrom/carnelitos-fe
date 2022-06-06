@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
-import { StoreToken } from "../src/services/login-service"
 
 export default function Login() {
   const [username, setUsername] = useState(undefined)
@@ -16,21 +15,23 @@ export default function Login() {
     e.preventDefault()
     const body = {
       username,
-      password
+      password,
     }
     try {
-      const response = await fetch(process.env.CARNE_API_URL + '/api/v1/login', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        process.env.CARNE_API_URL + "/api/v1/login",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
         },
-        body: JSON.stringify(body)
-      })
+      )
       let data = await response.json()
 
-      if (data.token) {
-        StoreToken(data.token)
+      if (data.valid) {
         router.push("/")
       } else {
         setError("Invalid login")
@@ -38,22 +39,18 @@ export default function Login() {
     } catch (err) {
       console.log(err)
     }
-
   }
-
 
   return (
     <div className="devise-form">
       <h2>Log in</h2>
-      <form
-        className="new_user"
-      >
+      <form className="new_user">
         <div className="field">
           <input
             autoFocus="autofocus"
             placeholder="Email"
             type="email"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={e => setUsername(e.target.value)}
           />
         </div>
         <div className="field">
@@ -61,15 +58,17 @@ export default function Login() {
             autoComplete="off"
             placeholder="Password"
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
           />
         </div>
         <div className="actions">
           <button
             className="login-button"
-            onClick={(e) => handleLogin(e)}
+            onClick={e => handleLogin(e)}
             disabled={!username || !password}
-          >Log in</button>
+          >
+            Log in
+          </button>
         </div>
       </form>
       <br />
@@ -78,5 +77,5 @@ export default function Login() {
         <a>Create account</a>
       </Link>
     </div>
-  );
+  )
 }

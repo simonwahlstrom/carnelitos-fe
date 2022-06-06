@@ -4,7 +4,6 @@ import { InfoCircleOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import ExerciseTabs from "../stats/exercise-tabs"
 import YTSearch from "youtube-api-search"
-import { GetToken } from "../../services/login-service"
 
 export function Session(props) {
   const [exercises, setExercises] = useState(undefined)
@@ -16,7 +15,6 @@ export function Session(props) {
     const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${GetToken()}`
     }
 
     setLoading(true)

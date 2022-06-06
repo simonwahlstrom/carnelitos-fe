@@ -1,11 +1,9 @@
 import { Notification } from "../components/notifications/notification"
-import { GetToken } from "./login-service"
 
 export async function GetWorkouts() {
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${GetToken()}`
   }
 
   try {
@@ -22,7 +20,6 @@ export async function StartWorkout(id) {
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${GetToken()}`
   }
 
   try {

@@ -1,11 +1,9 @@
 import { Notification } from "../components/notifications/notification"
-import { GetToken } from "./login-service"
 
 export async function AddToSchedule(body) {
     const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${GetToken()}`
   }
 
   try {
@@ -25,7 +23,6 @@ export async function MoveToDay(body) {
     const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${GetToken()}`
   }
 
   try {
@@ -44,7 +41,6 @@ export async function RemoveFromFlexibleSchedule(body) {
     const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${GetToken()}`
   }
 
   try {
@@ -63,7 +59,6 @@ export async function RemoveFromFixedSchedule(body) {
     const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${GetToken()}`
   }
 
   try {
@@ -82,7 +77,6 @@ export async function ChangeOrderOfFlexibleSchedule(body) {
     const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${GetToken()}`
   }
 
   try {
@@ -101,7 +95,6 @@ export async function SetScheduleType(body) {
     const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${GetToken()}`
   }
 
   try {

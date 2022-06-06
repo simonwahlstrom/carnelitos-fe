@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
-import { StoreToken } from "../src/services/login-service"
 
 export default function Signup() {
   const [username, setUsername] = useState(undefined)
@@ -29,8 +28,7 @@ export default function Signup() {
       })
       let data = await response.json()
 
-      if (data.token) {
-        StoreToken(data.token)
+      if (data.valid) {
         router.push("/")
       } else {
         setError("Nope that did not work. Try something else")
