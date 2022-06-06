@@ -3,8 +3,14 @@ import { List } from "antd"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import Workouts from "./workouts/workouts"
 import Exercises from "./exercises/exercises"
+import { LoginAsUser } from "../../services/admin-service"
 
-export function Admins(props) {
+export default function Admins(props) {
+  async function loginUser(id) {
+    const data = await LoginAsUser(id)
+    window.location = "/"
+  }
+
   return (
     <Tabs defaultIndex={0}>
       <TabList>
@@ -20,7 +26,7 @@ export function Admins(props) {
             header={<div>Users</div>}
             bordered
             dataSource={props.users}
-            renderItem={item => <List.Item><a onClick={() => window.location = "/admins/" + item.id}>{item.email}</a></List.Item>}
+            renderItem={item => <List.Item><a onClick={async () => loginUser(item.id)}>{item.email}</a></List.Item>}
           />
         </div>
       </TabPanel>
@@ -39,5 +45,3 @@ export function Admins(props) {
     </Tabs>
   )
 }
-
-export default Admins
