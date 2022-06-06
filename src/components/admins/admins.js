@@ -3,14 +3,29 @@ import { List } from "antd"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import Workouts from "./workouts/workouts"
 import Exercises from "./exercises/exercises"
-import { LoginAsUser } from "../../services/admin-service"
+import { GetAdminData, LoginAsUser } from "../../services/admin-service"
 import { StoreToken } from "../../services/login-service"
+import Skeleton from "../shared/skeleton"
 
-export default function Admins(props) {
+export default function Admins() {
+  const [data, setData] = useState(undefined)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await GetAdminData()
+      setData(result)
+    }
+    fetchData()
+  }, [])
+
   async function loginUser(id) {
     const data = await LoginAsUser(id)
     StoreToken(data.token)
     window.location = "/"
+  }
+
+  if (!data) {
+    return <Skeleton />
   }
 
   return (
@@ -27,7 +42,7 @@ export default function Admins(props) {
             size="small"
             header={<div>Users</div>}
             bordered
-            dataSource={props.users}
+            dataSource={data.users}
             renderItem={item => <List.Item><a onClick={async () => loginUser(item.id)}>{item.email}</a></List.Item>}
           />
         </div>
@@ -35,13 +50,13 @@ export default function Admins(props) {
 
       <TabPanel key="2">
         <div className="container">
-          <Workouts workouts={props.workouts} all_exercises={props.all_exercises} />
+          <Workouts workouts={data.workouts} all_exercises={data.all_exercises} />
         </div>
       </TabPanel>
 
       <TabPanel key="3">
         <div className="container">
-          <Exercises exercises={props.exercises} />
+          <Exercises exercises={data.exercises} />
         </div>
       </TabPanel>
     </Tabs>
