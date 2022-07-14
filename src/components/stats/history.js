@@ -68,6 +68,7 @@ export default function History(props) {
         visible={drawerVisible}
         onClose={() => setDrawerVisible(false)}
         placement="right"
+        width={"100%"}
       >
         {exercises(selectedExercises)}
       </Drawer>
