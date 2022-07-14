@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Modal, Calendar, Badge } from "antd"
+import { Button, Drawer, Calendar, Badge } from "antd"
 import History from "./history"
 import styled from 'styled-components'
 
@@ -67,18 +67,15 @@ export function Overview(props) {
     <OverViewStyling>
       <Calendar dateCellRender={dateCellRender} onSelect={selectDate} monthCellRender={monthCellRender} />
       <div>
-        <Modal
+        <Drawer
           title="Workout sessions"
           visible={visible}
-          onOk={() => setVisible(false)}
-          onCancel={() => setVisible(false)}
-          footer={
-            <Button key="OK" onClick={() => setVisible(false)}>
-              Close
-            </Button>}
+          onClose={() => setVisible(false)}
+          placement="right"
+          width={"100%"}
         >
           <History history={selectedWorkouts} />
-        </Modal>
+        </Drawer>
       </div>
     </OverViewStyling>
   )
