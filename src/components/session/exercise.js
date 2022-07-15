@@ -54,8 +54,9 @@ export function Exercise(props) {
             <Input
               style={{ height: 60 }}
               prefix="Weight: "
+              step="0.01"
+              inputMode="decimal"
               name="weight"
-              type="number"
               className="form-control weight"
               defaultValue={e.weight}
               onChange={(e) => updateValue(e, index)}
@@ -65,6 +66,7 @@ export function Exercise(props) {
             <Input
               style={{ height: 60 }}
               prefix={`Reps (${props.exercise.reps}): `}
+              pattern="\d*"
               name="reps"
               type="number"
               className="form-control reps"

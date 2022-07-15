@@ -9,7 +9,7 @@ export default function ExercisesChart(props) {
   const max = exercises.reduce((max, p) => parseInt(p.weight) > max ? parseInt(p.weight) : max, parseInt(exercises[0].weight))
   const data = exercises.reverse().map(e => {
     return {
-      weight: e.weight, date: e.date, reps: e.reps,
+      weight: e.weight.replace(/,/g, '.'), date: e.date, reps: e.reps,
     }
   })
 
